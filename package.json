@@ -1,0 +1,22 @@
+{
+  "name": "happyleetcode",
+  "version": "1.0.0",
+  "description": "leetcode",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhyjor/HappyLeetCode.git"
+  },
+  "keywords": [
+    "leetcode"
+  ],
+  "author": "zhyjor@163.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhyjor/HappyLeetCode/issues"
+  },
+  "homepage": "https://github.com/zhyjor/HappyLeetCode#readme"
+}
