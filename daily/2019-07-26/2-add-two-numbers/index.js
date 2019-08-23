@@ -5,38 +5,37 @@
  *     this.next = null;
  * }
  */
-/**
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
- */
+
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
 
 
 var addTwoNumbers = function (l1, l2) {
-  var getVal = (ln, val, f) => {
-    if (!ln.next) {
-      return val + (ln.val) * (Math.pow(10, f));
-    }
-    let _val = (ln.val) * (Math.pow(10, f)) + val;
-    return getVal(ln.next, _val, f + 1);
-  }
-  var getListNode = (listNode, arr) => {
-    let _arr = arr.splice(0, 1);
-    if (arr.length > 0) {
-      let _listNode = {
-        val: _arr[0],
-        next: listNode
+  let res = new ListNode(-1),
+    dummy = res, // dummy的对应地址是res
+    sum = 0, carry = 0;
+    while(l1 || l2 || sum > 0){
+      if(l1){
+        sum += l1.val;
+        l1 = l1.next;
       }
-      return getListNode(_listNode, arr);
-    } else {
-      return {
-        val: _arr[0],
-        next: listNode,
+      if(l2){
+        sum += l2.val;
+        l2 = l2.next;
       }
+      if(sum >= 10){
+        sum -= 10;
+        carry = 1;
+      }
+      dummy.next = new ListNode(sum); // dummy.next其实就是res.next
+      dummy = dummy.next; // 这个时候dummy代表的就是res.next，这样继续进行循环
+      sum = carry;
+      carry = 0;
     }
-  }
-  let _sum = (Array.from('' + (getVal(l1, 0, 0) + getVal(l2, 0, 0))));
-  return getListNode(null, _sum);
+    return res.next;
+
 };
 let l1 = { val: 2, next: { val: 4, next: { val: 3, next: null } } };
 let l2 = { val: 7, next: { val: 0, next: { val: 8, next: null } } };
