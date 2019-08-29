@@ -1,5 +1,5 @@
 /**
- * // 先排序，再找中位数
+ * // 先排序，再找中位数，对于题目来说
  * @param {number[]} nums1
  * @param {number[]} nums2
  * @return {number}
