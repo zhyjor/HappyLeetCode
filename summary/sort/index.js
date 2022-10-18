@@ -14,11 +14,17 @@ function bubbleSort(numbers) {
 function bubbleSort2(numbers) {
   const len = numbers.length;
   for (let i = 0; i < len; i++) {
+    // 区别在这里，我们加了一个标志位
+    let flag = false;
     for (let j = 0; j < len - i - 1; j++) {
       if (numbers[j] > numbers[j + 1]) {
-        [numbers[j], numbers[j + 1]] = [numbers[j + 1], numbers[j]]
+        [numbers[j], numbers[j + 1]] = [numbers[j + 1], numbers[j]];
+        // 只要发生了一次交换，就修改标志位
+        flag = true;
       }
     }
+    // 若一次交换也没发生，则说明数组有序，直接放过
+    if(!flag) return numbers;
   }
   return numbers;
 }
