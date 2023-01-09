@@ -18,3 +18,4 @@
 [层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/)
 [翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/)
 [层序遍历](https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/description/)
+[二叉搜索树中的插入操作](https://leetcode.cn/problems/insert-into-a-binary-search-tree/)
