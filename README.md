@@ -11,7 +11,7 @@
 5: Longest Palindromic Substring
 
 ## 分类型题目
-#### 二叉树
+### 二叉树
 [前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/)
 [中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/)
 [后序遍历](https://leetcode.cn/problems/binary-tree-postorder-traversal/)
@@ -20,3 +20,10 @@
 [层序遍历](https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/description/)
 [二叉搜索树中的插入操作](https://leetcode.cn/problems/insert-into-a-binary-search-tree/)
 [108. 将有序数组转换为二叉搜索树](https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/)
+
+#### 平衡二叉树
+[110. 判断平衡二叉树](https://leetcode.cn/problems/balanced-binary-tree/)
+[1382. 将二叉搜索树变平衡](https://leetcode.cn/problems/balance-a-binary-search-tree/description/)
+
+#### 堆
+[215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)

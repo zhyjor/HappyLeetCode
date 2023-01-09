@@ -208,5 +208,49 @@ function sortedArrayToBSR(numbers) {
   return root;
 }
 
+function isBalanced(r) {
+  const flag = true;
+  function dfs(root) {
+    if (!root || !flag) return 0;
+    const left = dfs(root.left);
+    const right = dfs(root.right);
+    if (Math.abs(left - right) > 1) {
+      flag = false;
+      return 0;
+    }
+    return Math.max(left, right) + 1;
+  }
+  dfs(r);
+  return flag;
+}
+
+function balancedBST(root) {
+  const numbers = [];
+  function inOrder(root) {
+    if (!root) return;
+    inOrder(root.left);
+    numbers.push(root.val);
+    inOrder(root.right);
+  }
+  function buildAVL(numbers) {
+    if (!numbers.length) return null;
+    function dfs(low, high) {
+      if(low > high) return null;
+      const mid = Math.floor(low + (high - low) / 2);
+      const cur = new TreeNode(numbers[mid]);
+      cur.left = dfs(low, mid - 1);
+      cur.right = dfs(mid + 1, high);
+      return cur;
+    }
+    return dfs(0, numbers.length - 1);
+  }
+  inOrder(root)
+  return buildAVL(numbers);
+}
+
+// heap
+
+
+
 console.log(deleteNode(root, 'D'));
 
