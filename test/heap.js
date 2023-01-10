@@ -8,6 +8,17 @@
  * 当题目中出现“第k大”或者“第k高“这样的关键字时，就是在暗示你用优先队列/堆结构来做题
  */
 
+/**
+ * https://www.jianshu.com/p/6b526aa481b1
+ * 1: 堆操作的基本方法
+ */
+
+/**
+ *
+ * @param {*} low
+ * @param {*} high
+ */
+
 function downHeap(low, high) {
   // i为当前节点，j为左子
   let i = low, j = i * 2 + 1;
