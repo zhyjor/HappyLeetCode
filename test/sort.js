@@ -104,7 +104,7 @@ function mergeSort(arr) {
   }
 }
 
-function quickSort(arr, left = 0, right = arr.length - 1) {
+function quickSort11(arr, left = 0, right = arr.length - 1) {
   if (arr.length > 1) {
     const lineIndex = partition(arr, left, right);
     if (left < lineIndex - 1) {
@@ -140,7 +140,7 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
   }
 }
 
-function quickSort2(arr, left = 0, right = arr.length - 1) {
+function quickSort22(arr, left = 0, right = arr.length - 1) {
 
   if (left < right) {
     const pivotIndex = partition(arr, left, right);
@@ -165,4 +165,65 @@ function quickSort2(arr, left = 0, right = arr.length - 1) {
   }
 }
 
-console.log(quickSort2([5, 3, 4, 3]));
+/**
+ * 这个方法是先将pivot拿出来，将拿出pivot的位置作为一个中转点
+ * @param {*} arr
+ * @param {*} left
+ * @param {*} right
+ * @returns
+ */
+function quickSort(arr, left = 0, right = arr.length - 1) {
+  if (left < right) {
+    const pivotIndex = partition(arr, left, right);
+    quickSort(arr, left, pivotIndex - 1);
+    quickSort(arr, pivotIndex + 1, right);
+  }
+  return arr;
+  function partition(arr, left, right) {
+    // 因为快排不会新建一个数组，因此需要判断预留位置用来做第一次交换，所以需要先移动右边的数据
+    const pivot = arr[left];
+    while (left < right) {
+      while (left < right && arr[right] >= pivot) {
+        right--;
+      }
+      arr[left] = arr[right];
+      while (left < right && arr[left] <= pivot) {
+        left++;
+      }
+      arr[right] = arr[left];
+    }
+    // left === right，一轮已经结束
+    arr[left] = pivot;
+    return arr;
+  }
+}
+
+// 基准点选谁并不重要，两个指针碰面的时候，一定满足已经将基准点送到了指定的位置，
+function quickSort2(arr, left = 0, right = arr.length - 1) {
+  // 用中间点作为基准分割，最终的目标是基准点左边不能有大于基准的，右边不能有小于的
+  if (left < right) {
+    const midIndex = partition(arr, left, right);
+    quickSort2(arr, left, midIndex - 1);
+    quickSort2(arr, midIndex + 1, right);
+  }
+  return arr;
+  function partition(arr, left, right) {
+    let pivot = arr[Math.floor(left + (right - left) / 2)];
+    while (left < right) {
+      while (arr[left] < pivot) {
+        left++;
+      }
+      while (arr[right] > pivot) {
+        right--;
+      }
+      if (left < right) {
+        [arr[left], arr[right]] = [arr[right], arr[left]];
+        left++;
+        right--;
+      }
+    }
+    return left;
+  }
+}
+
+console.log(quickSort2([5, 1, 2, 3, 4, 2, 1, 1,3]));
