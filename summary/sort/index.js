@@ -32,3 +32,13 @@ function bubbleSort2(numbers) {
 const array = [2, 3, 4, 1, 2, 5];
 
 console.log('bubbleSort2:', bubbleSort2(array));
+
+const Writable = require('stream').Writable;
+const writer = new Writable({
+  test(chunk, encoding, callback) {
+    // 比 process.nextTick() 稍慢
+    setTimeout(() => {
+      callback && callback();
+    });
+  }
+});
