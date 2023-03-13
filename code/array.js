@@ -42,7 +42,7 @@ const threeSum = (numbers) => {
   for (let i = 0; i < len - 2; i++) {
     // 定义左右指针
     let j = i + 1, k = len - 1;
-    if (numbers[i] === numbers[i + 1]) continue;
+    if (i > 0 && numbers[i] === numbers[i - 1]) continue;
     while (j < k) {
       if (numbers[i] + numbers[j] + numbers[k] < 0) {
         j++;
