@@ -1,4 +1,4 @@
-const test = [3, 4, 6, 7, 1];
+const test = [6, 5, 1, 3, 6, 2, 0, 7, 6];
 function bubbleSort(arr) {
   const len = arr.length;
   for (let i = 0; i < len; i++) {
@@ -104,8 +104,6 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
     arr[left] = pivot;
     return left;
   }
-
-
 }
 
 console.log(quickSort(test))
