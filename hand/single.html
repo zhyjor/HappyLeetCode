@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>单例模式</title>
+</head>
+<style>
+  #modal {
+    height: 200px;
+    width: 200px;
+    line-height: 200px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    text-align: center;
+  }
+
+</style>
+
+<body>
+  <button id="open">打开</button>
+  <button id="close">关闭</button>
+</body>
+<script>
+  const Model = (function () {
+    let model = null;
+    return function () {
+      if (!model) {
+        model = document.createElement('div');
+        model.innerHTML = '全局唯一的model';
+        model.id = 'modal';
+        model.style.display = 'none';
+        document.body.append(model);
+      }
+      return model;
+    }
+  })();
+  document.getElementById('open').addEventListener('click', function () {
+    const model = new Model();
+    model.style.display = 'block';
+  });
+  document.getElementById('close').addEventListener('click', function () {
+    const model = new Model();
+    if (model) {
+      model.style.display = 'none';
+    }
+  });
+</script>
+
+</html>
