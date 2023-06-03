@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/zhyjor/HappyLeetCode/issues"
   },
-  "homepage": "https://github.com/zhyjor/HappyLeetCode#readme"
+  "homepage": "https://github.com/zhyjor/HappyLeetCode#readme",
+  "dependencies": {
+    "redux": "^4.2.1"
+  }
 }
