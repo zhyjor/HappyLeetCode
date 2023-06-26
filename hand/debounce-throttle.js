@@ -25,3 +25,30 @@ function throttle(fn, delay) {
     }, delay)
   }
 }
+
+function debounce1(fn, wait) {
+  let timer = null;
+  return function () {
+    let context = this;
+    let args = arguments;
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    timer = setTimeout(() => {
+      fn.apply(context, args);
+    }, wait);
+  }
+}
+
+// 单位时间内一次
+function throttle2(fn, delay) {
+  let timer = null;
+  return function () {
+    if (timer) return;
+    timer = setTimeout(() => {
+      fn.apply(this, arguments);
+      timer = null;
+    }, delay);
+  }
+}
