@@ -133,3 +133,37 @@ function handlerCannotTraverse(target) {
   }
   return new Ctor(target);
 }
+
+let object1 = { a: 1 }
+let object2 = { b: 2 }
+let target = { c: 1 }
+Object.assign(target, object1, object2);
+
+function shallowCopy(object) {
+  // 只拷贝对象
+  if(!object || typeof object !== 'object') return;
+  let newObject = Array.isArray(object) ? [] : {};
+  for(let key in object) {
+    if(object.hasOwnProperty(key)) {
+      newObject[key] = object[key];
+    }
+  }
+  return newObject;
+}
+
+Object.myAssign = function(target, ...source) {
+  if(target === null) {
+    throw new TypeError('Null canot covert')
+  }
+  let ret = Object(target);
+  source.forEach(function(obj) {
+    if(obj !== null) {
+      for(let key in obj) {
+        if(obj.hasOwnProperty(key)) {
+          ret[key] = obj[key];
+        }
+      }
+    }
+  });
+  return ret;
+}
