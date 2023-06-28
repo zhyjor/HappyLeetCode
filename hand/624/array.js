@@ -30,4 +30,20 @@ let format = n => {
   }
 }
 
-console.log(format(112323123.212))
+let format1 = n => {
+  let num = n.toString();
+  let len = num.length;
+
+  if(len <= 3) {
+    return num;
+  } else {
+    let remainder = len % 3;
+    if(remainder > 0) {
+      return num.slice(0, remainder) + ',' + num.slice(remainder, len).match(/\d{3}/g).join(',');
+    } else {
+      return num.slice(0, len).match(/\d{3}/g).join(',')
+    }
+  }
+}
+
+console.log(format1(0112323123))
