@@ -6,10 +6,10 @@ function curry(fn, args) {
   args = args || [];
   return function () {
     let subArgs = args.slice(0);
-    for(let i = 0; i < args.length;i++) {
+    for (let i = 0; i < args.length; i++) {
       subArgs.push(arguments[i]);
     }
-    if(subArgs.length >= length) {
+    if (subArgs.length >= length) {
       return fn.apply(this, subArgs);
     } else {
       return curry.call(this, fn, subArgs);
@@ -19,4 +19,28 @@ function curry(fn, args) {
 
 function curry(fn, ...args) {
   return fn.length <= args ? fn(...args) : curry.bind(null, fn, ...args);
+}
+
+
+function curry(func, arity = func.length) {
+  function generateCurried(preArgs) {
+    return function curried(nextArgs) {
+      const args = [...preArgs, nextArgs];
+      if (args.length >= arity) {
+        return func(...args);
+      } else {
+        return generateCurried(args);
+      }
+    }
+  }
+  return generateCurried([]);
+}
+
+function pipe(...func) {
+  function callback(input, func) {
+    return func(input);
+  }
+  return function (params) {
+    return func.reduce(callback, params);
+  }
 }
