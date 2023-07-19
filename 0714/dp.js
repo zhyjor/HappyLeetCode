@@ -138,3 +138,44 @@ function combinationSum4(numbers, target) {
   }
   return dp[target];
 }
+
+/**
+ * @param {number} k
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function (k, prices) {
+  const dp = new Array(prices.length).fill(0).map(i => new Array(2 * k + 1).fill(0));
+  for (let j = 1; j < 2 * k; j += 2) {
+    dp[0][j] = -prices[0];
+  }
+  for (let i = 1; i < prices.length; i++) {
+    for (let j = 0; j < 2 * k - 1; j += 2) {
+      dp[i][j + 1] = Math.max(dp[i - 1][j + 1], dp[i - 1][j] - prices[i]);
+      dp[i][j + 2] = Math.max(dp[i - 1][j + 2], dp[i - 1][j + 1] + prices[i]);
+    }
+  }
+  return dp[prices.length - 1][2 * k];
+};
+
+function maxProfit(prices) {
+  const dp = new Array(prices.length).fill(0).map(i => new Array(4).fill(0));
+  dp[0][0] = -prices[0];
+  for (let i = 1; i < prices.length; i++) {
+    dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][3] - prices[i], dp[i - 1][1] - prices[i]);
+    dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][3]);
+    dp[i][2] = dp[i - 1][0] + prices[i];
+    dp[i][3] = dp[i - 1][2];
+  }
+  return Math.max(dp[prices.length - 1][2], dp[prices.length - 1][1], dp[prices.length - 1][3]);
+}
+
+function maxProfit(prices, fee) {
+  const dp = new Array(prices.length).fill(0).map(i => new Array(2).fill(0));
+  dp[0][0] = -prices[0];
+  for (let i = 1; i < prices.length; i++) {
+    dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] - prices[i]);
+    dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] + prices[i] - fee);
+  }
+  return Math.max(dp[prices.length - 1][0], dp[prices.length - 1][1]);
+}
