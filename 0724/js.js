@@ -297,8 +297,7 @@ function format(number) {
   }
 }
 
-class EventCenter {
-  handler = {};
+function invertTree(root) {
 
 }
 
