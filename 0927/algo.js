@@ -118,3 +118,19 @@ function subarraySum(nums,k) {
   }
   return result;
 }
+
+function findMinArrowShots(points) {
+  if(points.length === 0) return 0;
+  const sortPoints = points.sort((a,b) => {
+    return a[0] - b[0];
+  });
+  let result = 1;
+  for(let i = 1; i<= sortPoints.length-1;i++) {
+    if(sortPoints[i][0] > sortPoints[i-1][1]) {
+      result++;
+    } else {
+      sortPoints[i][1] = Math.min(sortPoints[i-1][1], sortPoints[i][1]);
+    }
+  }
+  return result;
+}
